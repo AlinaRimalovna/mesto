@@ -6,11 +6,7 @@ function popupOpened() {
 }
 editButton.addEventListener('click', popupOpened);
 
-
-// renderAdded();
-
 let closeButton = document.querySelector('.popup__close-icon');
-// let popup = document.querySelector('.popup');
 
 function popupClosed() {
   popup.classList.remove('popup_opened');
@@ -21,7 +17,7 @@ let Name = document.querySelector('.profile__info-name');
 let InputName = document.querySelector('.popup__name');
 
 function ChangeName() {
-InputName['value'] = Name.textContent;
+  InputName['value'] = Name.textContent;
 }
 ChangeName();
 
@@ -29,12 +25,10 @@ let About = document.querySelector('.profile__info-about');
 let InputAbout = document.querySelector('.popup__about');
 
 function ChangeAbout() {
-InputAbout['value'] = About.textContent;
+  InputAbout['value'] = About.textContent;
 }
 ChangeAbout();
 
-// let Name = document.querySelector('.profile__info-name');
-// let InputName = document.querySelector('.popup__name');
 let PopupButton = document.querySelector('.popup__button');
 
 function NewName() {
@@ -50,14 +44,3 @@ function NewAbout() {
 
 PopupButton.addEventListener('click', NewAbout);
 PopupButton.addEventListener('click', popupClosed);
-// NewName();
-
-/* <p id="paragraph">Это текст внутри элемента.</p> 
-let paragraph = document.getElementById('paragraph');
-
-console.log(paragraph.textContent); // "Это текст внутри элемента."
-paragraph.textContent = 'А это новый текст.'; // можно перезаписать содержимое  */
-
-// value="Жак-Ив Кусто"
-
-// value="Исследователь океана"
