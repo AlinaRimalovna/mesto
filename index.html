@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="pages/index.css">
+  <title>Место</title>
+</head>
+
+<body class="page">
+  <header class="header">
+    <img class="header__logo" src="./images/logo.svg" alt="логотип сайта Место">
+  </header>
+  <main class="content">
+    <section class="profile">
+      <div class="profile__main">
+        <img class="profile__avatar" src="./images/avatar.svg" alt="аватар пользователя">
+        <div class="profile__info">
+          <h1 class="profile__info-name">Жак-Ив&nbsp;Кусто</h1>
+          <button class="profile__button-edit">
+          </button>
+          <p class="profile__info-about">Исследователь океана</p>
+        </div>
+      </div>
+      <button class="profile__button-add">
+      </button>
+    </section>
+    <section class="elements">
+      <div class="element">
+        <img class="element__image" src="./images/karachaevsk.jpg" alt="Карачаевск">
+        <div class="element__info">
+          <h2 class="element__title">Карачаевск</h2>
+          <img class="element__like element__like_active" src="./images/like.svg" alt="нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="./images/elbrus.jpg" alt="Эльбрус">
+        <div class="element__info">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <img class="element__like element__like_active" src="./images/like.svg" alt="нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="./images/dombai.jpg" alt="Домбай">
+        <div class="element__info">
+          <h2 class="element__title">Домбай</h2>
+          <img class="element__like element__like_active" src="./images/like.svg" alt="нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="./images/iremel.jpg" alt="Иремель">
+        <div class="element__info">
+          <h2 class="element__title">Иремель</h2>
+          <img class="element__like element__like_active" src="./images/like.svg" alt="нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="./images/dagestan.jpg" alt="Дагестан">
+        <div class="element__info">
+          <h2 class="element__title">Дагестан</h2>
+          <img class="element__like element__like_active" src="./images/like.svg" alt="нравится">
+        </div>
+      </div>
+      <div class="element">
+        <img class="element__image" src="./images/nalchik.jpg" alt="Нальчик">
+        <div class="element__info">
+          <h2 class="element__title">Нальчик</h2>
+          <img class="element__like element__like_active" src="./images/like.svg" alt="нравится">
+        </div>
+      </div>
+
+    </section>
+  </main>
+  <footer class="footer">
+    <p class="footer__copyright">© 2020 Mesto Russia</p>
+  </footer>
+  <div class="popup">
+    <form class="popup__container">
+      <h2 class="popup__heading">Редактировать профиль</h2>
+      <input type="text" class="popup__input popup__name" name="name" placeholder="Имя" required>
+      <input type="text" class="popup__input popup__about" name="about" placeholder="Расскажите о себе" required>
+      <button class="popup__button">Сохранить</button>
+      <button class="popup__close-icon">
+      </button>
+    </form>
+
+  </div>
+  <script src="scripts/index.js"></script>
+</body>
+
+</html>
