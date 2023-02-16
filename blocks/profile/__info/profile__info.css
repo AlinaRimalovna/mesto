@@ -3,7 +3,8 @@
   flex-wrap: wrap;
   align-items: end;
   max-width: 336px;
-  max-height: 73px;
+  margin-top: 7px;
+
 }
 
 @media screen and (max-width: 650px) {

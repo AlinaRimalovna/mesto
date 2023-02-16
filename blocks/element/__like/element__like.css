@@ -1,3 +1,9 @@
+.element__like {
+  border: 0;
+  background-color: #fff;
+  cursor: pointer;
+}
+
 .element__like:hover {
   opacity: 0.5;
 }

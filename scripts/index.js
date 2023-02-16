@@ -1,46 +1,33 @@
 let editButton = document.querySelector('.profile__button-edit');
 let popup = document.querySelector('.popup');
+let name = document.querySelector('.profile__info-name');
+let about = document.querySelector('.profile__info-about');
+let inputName = document.querySelector('.popup__input_type_name');
+let inputAbout = document.querySelector('.popup__input_type_about');
 
-function popupOpened() {
+function popupOpened() { //открытие формы и заполнение
   popup.classList.add('popup_opened');
+  inputName['value'] = name.textContent;
+  inputAbout['value'] = about.textContent;
 }
 editButton.addEventListener('click', popupOpened);
 
 let closeButton = document.querySelector('.popup__close-icon');
-
-function popupClosed() {
+function popupClosed() { // закрытие формы
   popup.classList.remove('popup_opened');
 }
+
 closeButton.addEventListener('click', popupClosed);
 
-let Name = document.querySelector('.profile__info-name');
-let InputName = document.querySelector('.popup__name');
 
-function ChangeName() {
-  InputName['value'] = Name.textContent;
-}
-ChangeName();
+let formElement = document.querySelector('.popup__form');
 
-let About = document.querySelector('.profile__info-about');
-let InputAbout = document.querySelector('.popup__about');
+function handleFormSubmit (evt) {//редактирование и сохранение изменений
+  evt.preventDefault(); 
 
-function ChangeAbout() {
-  InputAbout['value'] = About.textContent;
-}
-ChangeAbout();
-
-let PopupButton = document.querySelector('.popup__button');
-
-function NewName() {
-  Name.textContent = InputName['value'];
+  name.textContent = inputName['value'];
+  about.textContent =  inputAbout['value'];
+  popupClosed();
 }
 
-PopupButton.addEventListener('click', NewName);
-PopupButton.addEventListener('click', popupClosed);
-
-function NewAbout() {
-  About.textContent = InputAbout['value'];
-}
-
-PopupButton.addEventListener('click', NewAbout);
-PopupButton.addEventListener('click', popupClosed);
+formElement.addEventListener('submit', handleFormSubmit); 

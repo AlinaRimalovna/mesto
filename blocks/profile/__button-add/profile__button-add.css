@@ -1,12 +1,14 @@
 .profile__button-add {
   background-color: #000000;
-  background-image: url(../../../images/Vector.svg);
+  background-image: url(../../../images/vector.svg);
   background-position: center;
   background-repeat: no-repeat;
   width: 150px;
   height: 50px;
-  border: 1px solid #fff;
+  border: 2px solid #fff;
   padding: 13px 63px;
+  cursor: pointer;
+  border-radius: 2px;
 }
 
 .profile__button-add:hover {
