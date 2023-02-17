@@ -16,7 +16,7 @@
   outline-color: #80A6FF;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 530px) {
   .popup__input {
     max-width: 238px;
   }

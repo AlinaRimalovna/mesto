@@ -11,7 +11,7 @@
   margin-right: 47px;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 530px) {
   .popup__heading {
     max-width: 238px;
     font-size: 18px;
