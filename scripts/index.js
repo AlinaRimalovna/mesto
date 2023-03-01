@@ -1,5 +1,5 @@
 let editButton = document.querySelector('.profile__button-edit');
-let popup = document.querySelector('.popup__type_edit');
+let popup = document.querySelector('.popup_type_edit');
 let name = document.querySelector('.profile__info-name');
 let about = document.querySelector('.profile__info-about');
 let inputName = document.querySelector('.popup__input_type_name');
@@ -7,8 +7,8 @@ let inputAbout = document.querySelector('.popup__input_type_about');
 let closeButton = document.querySelector('.popup__close-icon');
 let formElement = document.querySelector('form[name="editform"]');
 let addButton = document.querySelector('.profile__button-add');
-let popupAdd = document.querySelector('.popup__type_add');
-let popupView = document.querySelector('.popup__type_view');
+let popupAdd = document.querySelector('.popup_type_add');
+let popupView = document.querySelector('.popup_type_view');
 let closeButtonAdd = document.querySelector('.popup__close-icon_add');
 let closeButtonView = document.querySelector('.popup__close-icon_view');
 let elements = document.querySelector('.elements');
