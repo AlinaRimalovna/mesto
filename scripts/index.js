@@ -4,7 +4,7 @@ const userName = document.querySelector('.profile__info-name');
 const about = document.querySelector('.profile__info-about');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputAbout = document.querySelector('.popup__input_type_about');
-const closeButton = document.querySelector('.popup__close-icon_edit');
+const closeButtonEdit = document.querySelector('.popup__close-icon_edit');
 const editForm = document.querySelector('form[name="editform"]');
 const addButton = document.querySelector('.profile__button-add');
 const popupAdd = document.querySelector('.popup_type_add');
@@ -16,14 +16,19 @@ const addForm = document.querySelector('form[name="addform"]');
 const image = document.querySelector('.popup__image')
 const caption = document.querySelector('.popup__caption')
 
-function openPopupEdit() {//открытие формы редактировать и заполнение
-  popupEdit.classList.add('popup_opened');
-  inputName['value'] = userName.textContent;
-  inputAbout['value'] = about.textContent;
+function openPopup(popup) {//открытие попапа
+  popup.classList.add('popup_opened');
 }
 
 function closePopup(popup) {// закрытие попапа
   popup.classList.remove('popup_opened');
+}
+
+function openPopupEdit() {//открытие формы редактировать и заполнение
+  openPopup(popupEdit);
+  inputName['value'] = userName.textContent;
+  inputAbout['value'] = about.textContent;
+
 }
 
 function handleFormEditSubmit(evt) {//редактирование и сохранение изменений
@@ -33,14 +38,9 @@ function handleFormEditSubmit(evt) {//редактирование и сохра
   closePopup(popupEdit);
 }
 
-function popupOpenedAdd() { //открытие формы добавить
-  popupAdd.classList.add('popup_opened');
+function openPopupAdd() { //открытие формы добавить и очищение
+  openPopup(popupAdd);
   addForm.reset();
-}
-
-
-function popupOpenedView() { //открытие попапа просмотра картинки
-  popupView.classList.add('popup_opened');
 }
 
 function createCard(card) {//создание карточек, удаление и лайки
@@ -61,7 +61,6 @@ function createCard(card) {//создание карточек, удаление
 function addCard(card) {//добавление карточек в разметку
   const cardElement = createCard(card)
   elements.prepend(cardElement)
-
 }
 initialCards.forEach(addCard)
 
@@ -92,13 +91,13 @@ function openPopupView(event) {//функция открытия просмот�
   image.setAttribute('src', img.src);
   image.setAttribute('alt', img.alt);
   caption.textContent = img.alt
-  popupOpenedView();
+  openPopup(popupView);
 }
 
 editButton.addEventListener('click', openPopupEdit);
-closeButton.addEventListener('click', function () { closePopup(popupEdit) });
+closeButtonEdit.addEventListener('click', function () { closePopup(popupEdit) });
 editForm.addEventListener('submit', handleFormEditSubmit);
-addButton.addEventListener('click', popupOpenedAdd);
+addButton.addEventListener('click', openPopupAdd);
 closeButtonAdd.addEventListener('click', function () { closePopup(popupAdd) });
 addForm.addEventListener('submit', handleFormAdd);
 closeButtonView.addEventListener('click', function () { closePopup(popupView) }); 
