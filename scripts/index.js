@@ -1,7 +1,7 @@
 const editButton = document.querySelector('.profile__button-edit');
 const popupEdit = document.querySelector('.popup_type_edit');
 const userName = document.querySelector('.profile__info-name');
-const about = document.querySelector('.profile__info-about');
+const userAbout = document.querySelector('.profile__info-about');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputAbout = document.querySelector('.popup__input_type_about');
 const closeButtonEdit = document.querySelector('.popup__close-icon_edit');
@@ -16,25 +16,31 @@ const addForm = document.querySelector('form[name="addform"]');
 const image = document.querySelector('.popup__image')
 const caption = document.querySelector('.popup__caption')
 
+
 function openPopup(popup) {//открытие попапа
   popup.classList.add('popup_opened');
-}
+  popup.addEventListener('click', closePopupOverlay);
+  document.addEventListener('keydown', closePopupEsc);
+  }
+
 
 function closePopup(popup) {// закрытие попапа
   popup.classList.remove('popup_opened');
+  popup.removeEventListener('click', closePopupOverlay);
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 function openPopupEdit() {//открытие формы редактировать и заполнение
   openPopup(popupEdit);
   inputName['value'] = userName.textContent;
-  inputAbout['value'] = about.textContent;
+  inputAbout['value'] = userAbout.textContent;
 
 }
 
 function handleFormEditSubmit(evt) {//редактирование и сохранение изменений
   evt.preventDefault();
   userName.textContent = inputName.value;
-  about.textContent = inputAbout.value;
+  userAbout.textContent = inputAbout.value;
   closePopup(popupEdit);
 }
 
@@ -94,10 +100,28 @@ function openPopupView(event) {//функция открытия просмот�
   openPopup(popupView);
 }
 
+
 editButton.addEventListener('click', openPopupEdit);
 closeButtonEdit.addEventListener('click', function () { closePopup(popupEdit) });
 editForm.addEventListener('submit', handleFormEditSubmit);
 addButton.addEventListener('click', openPopupAdd);
 closeButtonAdd.addEventListener('click', function () { closePopup(popupAdd) });
 addForm.addEventListener('submit', handleFormAdd);
-closeButtonView.addEventListener('click', function () { closePopup(popupView) }); 
+closeButtonView.addEventListener('click', function () { closePopup(popupView) });
+
+
+function closePopupEsc (evt) {
+ 
+  if (evt.key === 'Escape') {
+    const popup = document.querySelector('.popup_opened')
+    closePopup(popup)
+  }
+}
+
+function closePopupOverlay (evt) {
+  if (evt.currentTarget === evt.target) {
+    const popup = document.querySelector('.popup_opened')
+    closePopup(popup)
+  }
+}
+
