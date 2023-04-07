@@ -1,5 +1,5 @@
 import { initialCards } from "./constants.js"
-import { deleteCard, clickLike, openPopupView, image, caption } from "./index.js"
+import { openPopup } from "./index.js"
 
 
 export class Card {
@@ -11,7 +11,7 @@ export class Card {
 
   _getTemplate() {
     const cardElement = document
-      .querySelector('template')
+      .querySelector(this._selector)
       .content
       .querySelector('.element')
       .cloneNode(true);
@@ -33,25 +33,33 @@ export class Card {
 
   _setEventListeners() {
     this._element.querySelector('.element__delete').addEventListener('click', () => {
-      deleteCard(this._element);
+      this._deleteCard(this._element);
     });
     this._element.querySelector('.element__like').addEventListener('click', () => {
-      clickLike(this._element);
+      this._likeCard(this._element);
     });
     this._element.querySelector('.element__image').addEventListener('click', () => {
-      openPopupView(this._element);
+      this._openFullImage(this._title, this._image);
     });
   }
-
+ 
+    _deleteCard() {//функция удаления карточек
+      this._element.remove()
+      }
+    
+      _likeCard() {//функция добавления лайков
+        this._element.querySelector('.element__like').classList.toggle('element__like_active');
+      }
+      _openFullImage(event) {//функция открытия просмотра картинок
+        const popupView = document.querySelector('.popup_type_view');
+        const imagePopupView = document.querySelector('.popup__image')
+    const captionPopupView = document.querySelector('.popup__caption')
+    imagePopupView.setAttribute('src', this._image);
+    imagePopupView.setAttribute('alt', this._title);
+    captionPopupView.textContent = this._title
+    openPopup(popupView);
+      }
 
 }
-initialCards.forEach((item) => {
 
-  const card = new Card(item.name, item.link);
-
-  const cardElement = card.generateCard();
-
-
-  document.querySelector('.elements').append(cardElement);
-});
 
