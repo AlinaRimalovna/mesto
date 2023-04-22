@@ -1,4 +1,4 @@
-import { config } from "./validate.js"
+
 
 
 export class FormValidator {
@@ -41,8 +41,8 @@ export class FormValidator {
   resetValidation(inputElement) {
     this._enableButton()
     this._inputList.forEach((inputElement) => {
-        this._hideInputError(inputElement);
-  });
+      this._hideInputError(inputElement);
+    });
   }
 
   _hasInvalidInput() {
@@ -54,8 +54,6 @@ export class FormValidator {
   _toggleButtonState() {
     if (this._hasInvalidInput()) {
       this._enableButton()
-      // this._submitButton.classList.add(this._inactiveButtonClass);
-      // this._submitButton.setAttribute('disabled', true);
     } else {
       this._disableButton()
     }
