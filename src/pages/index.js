@@ -36,17 +36,19 @@ function renderCard(cardData) {
 }
 
 function openFullImg(data) {
-
   popupFullImage.open(data)
+
 }
 
 const popupFullImage = new PopupWithImage('.popup_type_view');
+
+popupFullImage.setEventListeners();
 
 const userInfo = new UserInfo({
   nameSelector: '.profile__name',
   aboutSelector: '.profile__info-about'
 });
-userInfo.getUserInfo();
+
 
 const userPopup = new PopupWithForm({
   popupSelector: '.popup_type_edit',
@@ -55,10 +57,11 @@ const userPopup = new PopupWithForm({
       userName: data.name,
       userAbout: data.about
     });
-
+    console.log(data)
     userPopup.close()
   }
 });
+userPopup.setEventListeners();
 
 const cardAddPopup = new PopupWithForm({
   popupSelector: '.popup_type_add',
@@ -66,6 +69,7 @@ const cardAddPopup = new PopupWithForm({
     handleFormAdd(data);
   }
 });
+cardAddPopup.setEventListeners();
 
 function handleFormAdd(data) {//добавление карточки через попап
   console.log(data)
@@ -78,7 +82,6 @@ function inputFillingPopupEdit() {//заполнение формы редакт
   const inputValues = userInfo.getUserInfo()
   inputNameProfile['value'] = inputValues.userName;
   inputAboutProfile['value'] = inputValues.userAbout;
-  profileFormValidator.resetValidation()
 }
 
 const profileFormValidator = new FormValidator(config, popupEdit)
