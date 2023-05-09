@@ -8,11 +8,8 @@ export class PopupWithImage extends Popup {
   }
   open(data) {
     super.open();
-
     this._imagePopupView.setAttribute('src', data.link);
     this._imagePopupView.setAttribute('alt', data.name);
     this._captionPopupView.textContent = data.name;
-
-
   }
 }
