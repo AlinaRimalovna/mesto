@@ -60,7 +60,7 @@ export class Card {
   }
 
   isLiked() {
-    console.log(this._userId)
+    // console.log(this._userId)
     return this._likes.some(card => card._id === this._userId)
   }
 
