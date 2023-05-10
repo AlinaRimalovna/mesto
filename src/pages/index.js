@@ -64,11 +64,14 @@ function createCard(data, template) {
         api.deleteCard(cardId)
           .then(res => {
             card.deleteCard();
-            deletePopup.close();
+  
           })
           .catch((err) => {
             console.log(err);
-          });
+          })
+          .finally(() => {
+            deletePopup.close();
+          })
       });
     },
     handleLikeClick: () => {
