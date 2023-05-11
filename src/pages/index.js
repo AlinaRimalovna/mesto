@@ -26,33 +26,30 @@ const userInfo = new UserInfo({
 
 const section = new Section({ renderer: renderCard }, '.elements');
 
-
-api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo({
-      userName: res.name,
-      userAbout: res.about,
-      userAvatar: res.avatar
-    })
-    userId = res._id;
-    console.log(userId)
-    return userId
+async function getUserData() { 
+  try { 
+    const userInfoData = await api.getUserInfo(); 
+    const cards = await api.getInitialCards(); 
+    const promises = [userInfoData, cards]
+    Promise.all(promises)
+  .then((results) => {
+    userInfo.setUserInfo({ 
+      userName: userInfoData.name, 
+      userAbout: userInfoData.about, 
+      userAvatar: userInfoData.avatar       
+    }) 
+    userId = userInfoData._id; 
+    return userId  
   })
-  .catch((error) => {
-    console.error(`Ошибка при загрузке: ${error}`);
-  })
-
-
-async function getTasks() {
-  try {
-    const cards = await api.getInitialCards();
-    section.renderItems(cards);
-  } catch (error) {
-    console.error(`Ошибка при загрузке: ${error}`);
-  }
-}
-getTasks();
-
+  .then(() => {
+    section.renderItems(cards); 
+  }) 
+  } catch (error) { 
+    console.error(`Ошибка при загрузке: ${error}`); 
+  } 
+} 
+getUserData();
+  
 function createCard(data, template) {
   const card = new Card({
     data,
@@ -66,11 +63,11 @@ function createCard(data, template) {
             card.deleteCard();
   
           })
+          .then(() => {
+            deletePopup.close();
+          })
           .catch((err) => {
             console.log(err);
-          })
-          .finally(() => {
-            deletePopup.close();
           })
       });
     },
@@ -122,11 +119,11 @@ const userPopup = new PopupWithForm({
           userAvatar: res.avatar
         })
       })
-      .catch(err => console.error(`Ошибка:${err}`))
-      .finally(() => {
+      .then(() => {
         editPopupButton.textContent = 'Сохранить';
         userPopup.close()
       })
+      .catch(err => console.error(`Ошибка:${err}`))
   }
 });
 userPopup.setEventListeners();
@@ -147,11 +144,12 @@ function handleFormAdd(data) {//добавление карточки через
       const cardElement = createCard(res)
       section.addItem(cardElement)
     })
-    .catch(err => console.error(`Ошибка:${err}`))
-    .finally(() => {
+    .then(() => {
       addPopupButton.textContent = 'Создать';
       cardAddPopup.close();
     })
+    .catch(err => console.error(`Ошибка:${err}`))
+
 }
 
 async function inputFillingPopupEdit() {//заполнение формы редактировать 
@@ -191,13 +189,12 @@ const cardAvatarPopup = new PopupWithForm({
           console.log(data.avatar)
           userAvatar['src'] = res.avatar;
         })
-        .then((res) => { cardAvatarPopup.close() })
+        .then((res) => { 
+          editAvatarPopupButton.textContent = 'Сохранить';
+          cardAvatarPopup.close() })
     }
     catch (error) {
       console.error(`Ошибка при загрузке: ${error}`);
-    }
-    finally {
-      editAvatarPopupButton.textContent = 'Сохранить';
     }
   }
 });
