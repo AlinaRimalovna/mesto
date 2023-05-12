@@ -44,7 +44,7 @@ async function getUserData() {
   .then(() => {
     section.renderItems(cards); 
   }) 
-  } catch (error) { 
+} catch (error) { 
     console.error(`Ошибка при загрузке: ${error}`); 
   } 
 } 
@@ -120,10 +120,12 @@ const userPopup = new PopupWithForm({
         })
       })
       .then(() => {
-        editPopupButton.textContent = 'Сохранить';
         userPopup.close()
       })
       .catch(err => console.error(`Ошибка:${err}`))
+      .finally(() => { 
+        editPopupButton.textContent = 'Сохранить'; 
+      })
   }
 });
 userPopup.setEventListeners();
@@ -145,10 +147,13 @@ function handleFormAdd(data) {//добавление карточки через
       section.addItem(cardElement)
     })
     .then(() => {
-      addPopupButton.textContent = 'Создать';
+      
       cardAddPopup.close();
     })
     .catch(err => console.error(`Ошибка:${err}`))
+    .finally(() => { 
+      addPopupButton.textContent = 'Создать'; 
+    })
 
 }
 
@@ -190,12 +195,14 @@ const cardAvatarPopup = new PopupWithForm({
           userAvatar['src'] = res.avatar;
         })
         .then((res) => { 
-          editAvatarPopupButton.textContent = 'Сохранить';
           cardAvatarPopup.close() })
     }
     catch (error) {
       console.error(`Ошибка при загрузке: ${error}`);
     }
+    finally { 
+      editAvatarPopupButton.textContent = 'Сохранить'; 
+    } 
   }
 });
 cardAvatarPopup.setEventListeners();
